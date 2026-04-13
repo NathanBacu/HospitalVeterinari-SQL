@@ -1,8 +1,8 @@
 CREATE DATABASE IF NOT EXISTS HospitalVeterinari
 CHARACTER SET utf8mb4
 COLLATE utf8mb4_spanish_ci;
-USE HospitalVeterinari;
 
+USE HospitalVeterinari;
 
 CREATE TABLE IF NOT EXISTS Propietari (
 IdPropietari 			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -11,7 +11,7 @@ Cognom			VARCHAR(30) NOT NULL DEFAULT '',
 Telefon				CHAR(9) NOT NULL,
 Direccion			VARCHAR(100)
 )
-ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish_ci;
+ENGINE = INNODB;
 
 
 CREATE TABLE IF NOT EXISTS Animal (
@@ -23,7 +23,7 @@ DataNaixement			DATE,
 IdPropietari			INT UNSIGNED NOT NULL,
 CONSTRAINT FOREIGN KEY (IdPropietari) REFERENCES Propietari(IdPropietari)
 	ON DELETE CASCADE ON UPDATE CASCADE)
-ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish_ci;
+ENGINE = INNODB;
 
 
 CREATE TABLE IF NOT EXISTS Veterinario (
@@ -34,7 +34,7 @@ DataInici			DATE,
 IdSupervisor			INT UNSIGNED,
 CONSTRAINT fk_veterinario_supervisor FOREIGN KEY (IdSupervisor) REFERENCES Veterinario(IdVeterinario)
 ON DELETE SET NULL ON UPDATE CASCADE )
-ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish_ci;
+ENGINE = INNODB;
 
 
 CREATE TABLE IF NOT EXISTS Medicament (
@@ -42,13 +42,13 @@ IdMedicament			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 NomComercial			VARCHAR(20) NOT NULL,
 PrincipiActiu			VARCHAR(50) NOT NULL,
 Fabricant			VARCHAR(15))
-ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish_ci;
+ENGINE = INNODB;
 
 
 CREATE TABLE IF NOT EXISTS Tractament (
 IdTractament			INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 CantidadMedicaments		INT UNSIGNED)
-ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish_ci;
+ENGINE = INNODB;
 
 
 CREATE TABLE IF NOT EXISTS Medicament_Tractament (
@@ -59,7 +59,7 @@ CONSTRAINT FOREIGN KEY (IdTractament) REFERENCES Tractament(IdTractament)
 	ON UPDATE CASCADE ON DELETE CASCADE,
 CONSTRAINT FOREIGN KEY (IdMedicament) REFERENCES Medicament(IdMedicament)
 	ON UPDATE CASCADE ON DELETE CASCADE)
-ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish_ci;
+ENGINE = INNODB;
 
 
 CREATE TABLE IF NOT EXISTS Visita (
@@ -69,7 +69,7 @@ DiagnosticInicial		VARCHAR(100),
 IdTractament 			INT UNSIGNED,
 CONSTRAINT fk_Visita_Tractament FOREIGN KEY (IdTractament) REFERENCES Tractament(IdTractament)
 ON UPDATE CASCADE ON DELETE CASCADE)
-ENGINE = INNODB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish_ci;
+ENGINE = INNODB;
 
 
 CREATE TABLE IF NOT EXISTS Visita_Veterinario (
